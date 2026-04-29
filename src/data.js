@@ -48,3 +48,61 @@ export const serviceCards = [
     points: ['Planning the right first version', 'Complete website or app delivery', 'Launch help and ongoing updates'],
   },
 ];
+
+export const processSteps = [
+  {
+    id: 'discover',
+    step: '01',
+    title: 'You share the idea',
+    body: 'Tell us what you want to build, what is not working right now, and what kind of result you want for your business.',
+    chips: ['Goals', 'Problems', 'Vision'],
+    mark: 'IN',
+  },
+  {
+    id: 'shape',
+    step: '02',
+    title: 'We shape the plan',
+    body: 'We turn that idea into a clear direction with the right pages, features, flow, and priorities before the build starts.',
+    chips: ['Structure', 'Features', 'Flow'],
+    mark: 'PL',
+  },
+  {
+    id: 'build',
+    step: '03',
+    title: 'We build and refine',
+    body: 'Design, development, testing, and polish all happen together so the final product feels clean and works properly.',
+    chips: ['Design', 'Build', 'Polish'],
+    mark: 'BX',
+  },
+  {
+    id: 'launch',
+    step: '04',
+    title: 'You launch with confidence',
+    body: 'Once everything is ready, we help you go live with something that looks strong, feels smooth, and is ready for real users.',
+    chips: ['Launch', 'Support', 'Growth'],
+    mark: 'GO',
+  },
+];
+
+export const technologies = [
+  {
+    title: 'Backend and Logic',
+    body: 'The tools we use to build product logic, APIs, automation, and the systems that run behind the scenes.',
+    stack: ['Python', 'Node.js', 'REST APIs'],
+  },
+  {
+    title: 'Frontend and Experience',
+    body: 'The technologies we use to create fast, modern interfaces that feel clean across desktop and mobile.',
+    stack: ['React', 'JavaScript', 'Vite', 'HTML5', 'CSS3'],
+  },
+  {
+    title: 'Data and Automation',
+    body: 'The setup we rely on for storing data, collecting useful information, and reducing repetitive work.',
+    stack: ['SQL', 'MongoDB', 'Web Scraping'],
+  },
+  {
+    title: 'Workflow and Delivery',
+    body: 'The tools that help us collaborate, ship cleanly, and keep projects organized as they move forward.',
+    stack: ['Git'],
+  },
+];

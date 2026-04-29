@@ -1,5 +1,22 @@
 import { useEffect, useState } from 'react';
 
+const discussLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('hello@arixtech.dev')}&su=${encodeURIComponent('Project inquiry from Arix Tech website')}&body=${encodeURIComponent(
+  `Hi Arix Tech,
+
+I would like to discuss a project with you.
+
+Project type:
+Business / brand:
+What I need help with:
+Timeline:
+Budget range:
+My email:
+
+Please get back to me when you can.
+
+Thanks,`
+)}`;
+
 const searchScenes = [
   {
     query: 'I wish I had a website for my barber shop',
@@ -99,7 +116,9 @@ export default function Hero() {
   return (
     <div className="hero-card glass-panel hero-panel">
       <div className="hero-title hero-title-v2">
-        <span className="small-label">Arix Tech</span>
+        <div className="hero-topbar">
+          <span className="small-label">Arix Tech</span>
+        </div>
         <h1>Software solutions for modern product teams</h1>
         <p className="hero-subtitle">
           We turn business ideas into polished online experiences, smart automation, and useful data tools that help brands grow.
@@ -120,6 +139,15 @@ export default function Hero() {
               {suggestion}
             </div>
           ))}
+        </div>
+        <div className="hero-cta-row">
+          <p className="hero-cta-note">Have something similar in mind?</p>
+          <a className="hero-discuss-button" href={discussLink} target="_blank" rel="noreferrer">
+            <span className="hero-discuss-title">Let&apos;s discuss your project</span>
+            <span className="hero-discuss-arrow" aria-hidden="true">
+              -&gt;
+            </span>
+          </a>
         </div>
       </div>
     </div>

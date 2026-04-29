@@ -1,4 +1,6 @@
 import Hero from '../components/Hero.jsx';
+import ProcessSection from '../components/ProcessSection.jsx';
+import TechnologiesSection from '../components/TechnologiesSection.jsx';
 import { serviceCards } from '../data.js';
 
 export default function HomePage() {
@@ -9,6 +11,7 @@ export default function HomePage() {
       <div className="hero-column">
         <Hero />
       </div>
+      <ProcessSection />
       <div className="hero-column services-section">
         <div className="section-header">
           <span className="section-label">Our Services</span>
@@ -51,6 +54,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+      <TechnologiesSection />
     </section>
   );
 }

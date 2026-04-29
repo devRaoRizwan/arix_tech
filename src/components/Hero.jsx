@@ -1,61 +1,100 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-const searchPrompts = [
+const searchScenes = [
   {
-    prefix: 'I wish I had a website for my',
-    options: ['barber shop', 'restaurant', 'jewelry store', 'cafe', 'health clinic', 'fitness studio'],
+    query: 'I wish I had a website for my barber shop',
+    suggestions: [
+      'I wish I had online bookings for my barber shop',
+      'I wish I could show my services for my barber shop',
+      'I wish I could get more local clients for my barber shop',
+    ],
   },
   {
-    prefix: 'I wish I could show my products online for',
-    options: ['a boutique', 'a startup', 'a food brand', 'a service shop'],
+    query: 'I wish I could show my products online for my boutique',
+    suggestions: [
+      'I wish I could launch a clean catalog for my boutique',
+      'I wish I could sell faster online for my boutique',
+      'I wish I could manage orders better for my boutique',
+    ],
   },
   {
-    prefix: 'I wish I could automate my',
-    options: ['appointments', 'orders', 'customer updates', 'marketing tasks'],
+    query: 'I wish I could automate appointments for my clinic',
+    suggestions: [
+      'I wish I could send reminders for my clinic',
+      'I wish I could organize patient requests for my clinic',
+      'I wish I could reduce manual follow-ups for my clinic',
+    ],
   },
   {
-    prefix: 'I wish I could collect data for',
-    options: ['local pricing', 'customer reviews', 'product availability', 'market trends'],
-  },
-  {
-    prefix: 'I wish I had a faster way to',
-    options: ['sell online', 'manage clients', 'share updates', 'track leads'],
+    query: 'I wish I could collect market data for my startup',
+    suggestions: [
+      'I wish I could track competitor pricing for my startup',
+      'I wish I could scrape product trends for my startup',
+      'I wish I could gather customer insights for my startup',
+    ],
   },
 ];
 
+function getLiveSuggestions(query, scene) {
+  if (!query) {
+    return [];
+  }
+
+  return [scene.query, ...scene.suggestions]
+    .filter((item) => item.toLowerCase().startsWith(query.toLowerCase()))
+    .slice(0, 3);
+}
+
 export default function Hero() {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const [currentPrompt, setCurrentPrompt] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [typing, setTyping] = useState(true);
 
-  useEffect(() => {
-    const prompt = searchPrompts[currentPrompt];
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index <= prompt.prefix.length) {
-        const partial = prompt.prefix.slice(0, index);
-        setQuery(partial);
-        const matched = prompt.options
-          .map((option) => `${prompt.prefix} ${option}`)
-          .filter((item) => item.toLowerCase().startsWith(partial.toLowerCase()))
-          .slice(0, 3);
-        setSuggestions(matched);
-        index += 1;
-      } else {
-        clearInterval(interval);
-        setTyping(false);
-        setTimeout(() => {
-          setCurrentPrompt((value) => (value + 1) % searchPrompts.length);
-          setTyping(true);
-          setQuery('');
-          setSuggestions([]);
-        }, 2600);
-      }
-    }, 200);
+  const activeScene = searchScenes[currentIndex];
+  const visibleSuggestions = Array.from({ length: 3 }, (_, index) => suggestions[index] ?? '');
 
-    return () => clearInterval(interval);
-  }, [currentPrompt, typing]);
+  useEffect(() => {
+    const fullQuery = activeScene.query;
+    let timeoutId;
+
+    if (!isDeleting) {
+      setTyping(true);
+
+      if (query.length < fullQuery.length) {
+        timeoutId = window.setTimeout(() => {
+          const nextQuery = fullQuery.slice(0, query.length + 1);
+          setQuery(nextQuery);
+          setSuggestions(getLiveSuggestions(nextQuery, activeScene));
+        }, query.length < 10 ? 55 : 78);
+      } else {
+        setTyping(false);
+        setSuggestions(activeScene.suggestions);
+        timeoutId = window.setTimeout(() => {
+          setIsDeleting(true);
+          setTyping(true);
+        }, 2200);
+      }
+    } else if (query.length > 0) {
+      timeoutId = window.setTimeout(() => {
+        const nextQuery = fullQuery.slice(0, query.length - 1);
+        setQuery(nextQuery);
+        setSuggestions(getLiveSuggestions(nextQuery, activeScene));
+      }, 38);
+    } else {
+      timeoutId = window.setTimeout(() => {
+        setIsDeleting(false);
+        setCurrentIndex((value) => (value + 1) % searchScenes.length);
+      }, 260);
+    }
+
+    return () => {
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
+    };
+  }, [activeScene, currentIndex, isDeleting, query]);
 
   return (
     <div className="hero-card glass-panel hero-panel">
@@ -71,15 +110,17 @@ export default function Hero() {
           <span className="search-text">{query}</span>
           <span className={`cursor ${typing ? 'cursor-active' : 'cursor-paused'}`}>|</span>
         </div>
-        {suggestions.length > 0 && (
-          <>
-            {suggestions.map((suggestion, index) => (
-              <div key={index} className="suggestion-item suggestion-pill">
-                <strong>{query}</strong>{suggestion.slice(query.length)}
-              </div>
-            ))}
-          </>
-        )}
+        <div className="suggestions-stack" aria-hidden="true">
+          {visibleSuggestions.map((suggestion, index) => (
+            <div
+              key={`${currentIndex}-${index}`}
+              className={`suggestion-item suggestion-pill ${suggestion ? 'suggestion-visible' : 'suggestion-hidden'}`}
+              style={{ animationDelay: `${index * 70}ms` }}
+            >
+              {suggestion}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

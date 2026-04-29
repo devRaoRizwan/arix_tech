@@ -1,101 +1,85 @@
 import { useState, useEffect } from 'react';
 
-const baseQueries = [
-  'I want to build a website',
-  'I need backend development',
-  'Frontend design services',
-  'Web scraping solution',
-  'Automation for my business',
-  'Full-stack application',
-  'API development',
-  'Data scraping tool',
-  'Custom software',
-  'E-commerce platform',
+const searchPrompts = [
+  {
+    prefix: 'I wish I had a website for my',
+    options: ['barber shop', 'restaurant', 'jewelry store', 'cafe', 'health clinic', 'fitness studio'],
+  },
+  {
+    prefix: 'I wish I could show my products online for',
+    options: ['a boutique', 'a startup', 'a food brand', 'a service shop'],
+  },
+  {
+    prefix: 'I wish I could automate my',
+    options: ['appointments', 'orders', 'customer updates', 'marketing tasks'],
+  },
+  {
+    prefix: 'I wish I could collect data for',
+    options: ['local pricing', 'customer reviews', 'product availability', 'market trends'],
+  },
+  {
+    prefix: 'I wish I had a faster way to',
+    options: ['sell online', 'manage clients', 'share updates', 'track leads'],
+  },
 ];
 
-const allSuggestions = [
-  'I want to build a website for my business',
-  'I need backend development for my app',
-  'Frontend design services for modern UI',
-  'Web scraping solution for data collection',
-  'Automation for my business processes',
-  'Full-stack application development',
-  'API development and integration',
-  'Data scraping tool with automation',
-  'Custom software for enterprise',
-  'E-commerce platform with payment',
-  'Backend systems for scalability',
-  'Frontend experiences with animations',
-  'Web scraping flows for insights',
-  'Automation pipelines for efficiency',
-  'End-to-end solutions for startups',
-];
-
-export default function Hero({ serviceCards }) {
+export default function Hero() {
   const [query, setQuery] = useState('');
-  const [currentBase, setCurrentBase] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
-  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
+  const [currentPrompt, setCurrentPrompt] = useState(0);
+  const [typing, setTyping] = useState(true);
 
   useEffect(() => {
-    if (!isTyping) return;
-
-    const base = baseQueries[currentBase];
+    const prompt = searchPrompts[currentPrompt];
     let index = 0;
     const interval = setInterval(() => {
-      if (index <= base.length) {
-        const partial = base.slice(0, index);
+      if (index <= prompt.prefix.length) {
+        const partial = prompt.prefix.slice(0, index);
         setQuery(partial);
-        const filtered = allSuggestions.filter(suggestion =>
-          suggestion.toLowerCase().startsWith(partial.toLowerCase()) && suggestion !== partial
-        ).slice(0, 5);
-        setFilteredSuggestions(filtered);
-        index++;
+        const matched = prompt.options
+          .map((option) => `${prompt.prefix} ${option}`)
+          .filter((item) => item.toLowerCase().startsWith(partial.toLowerCase()))
+          .slice(0, 3);
+        setSuggestions(matched);
+        index += 1;
       } else {
         clearInterval(interval);
+        setTyping(false);
         setTimeout(() => {
-          setIsTyping(false);
-          setTimeout(() => {
-            setCurrentBase((prev) => (prev + 1) % baseQueries.length);
-            setIsTyping(true);
-            setQuery('');
-            setFilteredSuggestions([]);
-          }, 2000);
-        }, 1000);
+          setCurrentPrompt((value) => (value + 1) % searchPrompts.length);
+          setTyping(true);
+          setQuery('');
+          setSuggestions([]);
+        }, 2600);
       }
-    }, 100);
+    }, 200);
 
     return () => clearInterval(interval);
-  }, [currentBase, isTyping]);
+  }, [currentPrompt, typing]);
 
   return (
-    <div className="hero-card glass-panel">
-      <div className="hero-title">
+    <div className="hero-card glass-panel hero-panel">
+      <div className="hero-title hero-title-v2">
         <span className="small-label">Arix Tech</span>
-        <h1>Software solution company</h1>
+        <h1>Software solutions for modern product teams</h1>
+        <p className="hero-subtitle">
+          We turn business ideas into polished online experiences, smart automation, and useful data tools that help brands grow.
+        </p>
       </div>
-      <div className="search-container">
-        <div className="search-display">
+      <div className="search-card">
+        <div className="search-display search-display-large">
           <span className="search-text">{query}</span>
-          {isTyping && <span className="cursor">|</span>}
+          <span className={`cursor ${typing ? 'cursor-active' : 'cursor-paused'}`}>|</span>
         </div>
-        {filteredSuggestions.length > 0 && (
-          <ul className="suggestions-list">
-            {filteredSuggestions.map((suggestion, index) => (
-              <li key={index} className="suggestion-item">
+        {suggestions.length > 0 && (
+          <>
+            {suggestions.map((suggestion, index) => (
+              <div key={index} className="suggestion-item suggestion-pill">
                 <strong>{query}</strong>{suggestion.slice(query.length)}
-              </li>
+              </div>
             ))}
-          </ul>
+          </>
         )}
-      </div>
-      <div className="service-blocks">
-        {serviceCards.slice(0, 3).map((item) => (
-          <div key={item.title} className="service-block">
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-          </div>
-        ))}
       </div>
     </div>
   );

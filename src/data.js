@@ -216,3 +216,44 @@ export const aboutStats = [
   { value: 'Data', label: 'Automation and scraping workflows' },
   { value: 'Full-stack', label: 'Frontend to backend delivery' },
 ];
+
+export const contactChannels = [
+  {
+    id: 'email',
+    label: 'Email',
+    value: 'hello@arixtech.dev',
+    href: 'mailto:hello@arixtech.dev',
+    note: 'Best for project details and estimates',
+    icon: 'mail',
+  },
+  {
+    id: 'linkedin',
+    label: 'LinkedIn',
+    value: 'Arix Tech on LinkedIn',
+    href: 'https://www.linkedin.com/',
+    note: 'Professional updates and direct outreach',
+    icon: 'linkedin',
+  },
+  {
+    id: 'support',
+    label: 'Support',
+    value: 'Post-delivery help available',
+    href: 'mailto:hello@arixtech.dev?subject=Support%20request%20from%20Arix%20Tech%20website',
+    note: 'Custom changes, follow-ups, and updates',
+    icon: 'support',
+  },
+];
+
+export const contactSignals = [
+  { id: 'clients', target: 18, suffix: '+', label: 'Businesses helped' },
+  { id: 'projects', target: 30, suffix: '+', label: 'Projects delivered' },
+  { id: 'updates', target: 54, suffix: '+', label: 'Custom updates shipped' },
+];
+
+export const contactActivity = [
+  'Frontend builds',
+  'Backend systems',
+  'Scraping workflows',
+  'Automation setup',
+  'Post-launch updates',
+];

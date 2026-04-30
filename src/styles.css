@@ -1443,6 +1443,263 @@ h1 {
   line-height: 1.85;
 }
 
+.contact-shell {
+  width: min(1440px, 100%);
+  display: grid;
+  gap: 28px;
+  padding-inline: 44px;
+}
+
+.contact-header {
+  max-width: 860px;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.contact-hero-card {
+  padding: 36px;
+  border-radius: 38px;
+  background:
+    radial-gradient(circle at top right, rgba(58, 160, 255, 0.18), transparent 26%),
+    linear-gradient(160deg, rgba(12, 24, 49, 0.98), rgba(7, 13, 26, 0.96));
+  border: 1px solid rgba(81, 134, 209, 0.16);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(196, 222, 255, 0.03);
+  display: grid;
+  gap: 28px;
+}
+
+.contact-hero-copy {
+  display: grid;
+  gap: 10px;
+  max-width: 560px;
+}
+
+.contact-hero-copy h3,
+.contact-cta-copy h3 {
+  margin: 0;
+  color: #eef5ff;
+}
+
+.contact-hero-copy h3 {
+  font-size: clamp(2.2rem, 3vw, 3.2rem);
+  line-height: 0.98;
+  max-width: 11ch;
+}
+
+.contact-activity-panel {
+  padding: 22px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(120, 170, 235, 0.14);
+  display: grid;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-activity-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 0%, rgba(134, 202, 255, 0.08) 48%, transparent 100%);
+  transform: translateX(-100%);
+  animation: contact-scan 4.8s linear infinite;
+  pointer-events: none;
+}
+
+.contact-activity-label,
+.contact-channel-label {
+  color: #8cc7ff;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.contact-activity-list {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-activity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 0 16px;
+  border-radius: 18px;
+  background: rgba(8, 15, 30, 0.7);
+  color: #deebff;
+  animation: suggestion-rise 320ms ease both;
+}
+
+.contact-activity-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #7ed0ff, #2f8fff);
+  box-shadow: 0 0 0 6px rgba(57, 160, 255, 0.08);
+  flex: 0 0 auto;
+}
+
+.contact-side-column {
+  display: grid;
+  gap: 22px;
+}
+
+.contact-signal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.contact-signal-card {
+  min-height: 150px;
+  padding: 22px 20px;
+  border-radius: 24px;
+  background: rgba(8, 15, 30, 0.94);
+  border: 1px solid rgba(75, 119, 201, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(196, 222, 255, 0.04);
+  display: grid;
+  align-content: end;
+  gap: 8px;
+  animation: suggestion-rise 320ms ease both;
+}
+
+.contact-signal-bar {
+  width: 100%;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.contact-signal-bar span {
+  display: block;
+  width: 72%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #59beff, #2f8fff);
+  box-shadow: 0 0 16px rgba(57, 160, 255, 0.35);
+  animation: counter-fill 1.8s ease both;
+}
+
+.contact-signal-card strong {
+  color: #f3f8ff;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.contact-signal-card span {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.contact-channel-list {
+  display: grid;
+  gap: 16px;
+}
+
+.contact-channel-card {
+  padding: 20px;
+  border-radius: 24px;
+  background: rgba(8, 15, 30, 0.94);
+  border: 1px solid rgba(75, 119, 201, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(196, 222, 255, 0.04);
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 16px;
+  text-decoration: none;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.contact-channel-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(95, 162, 255, 0.24);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18), inset 0 0 0 1px rgba(196, 222, 255, 0.04);
+}
+
+.contact-channel-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(35, 87, 170, 0.95), rgba(99, 197, 255, 0.92));
+  box-shadow: 0 14px 30px rgba(24, 84, 168, 0.28);
+  display: grid;
+  place-items: center;
+}
+
+.contact-icon-glyph {
+  color: #f6fbff;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.contact-channel-copy {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.contact-channel-copy strong {
+  color: #eef5ff;
+  font-size: 1rem;
+}
+
+.contact-channel-copy p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.contact-cta-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  padding: 30px 34px;
+  border-radius: 30px;
+  background:
+    linear-gradient(90deg, rgba(57, 160, 255, 0.08), rgba(57, 160, 255, 0.02)),
+    rgba(8, 15, 30, 0.9);
+  border: 1px solid rgba(75, 119, 201, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(196, 222, 255, 0.03);
+}
+
+.contact-cta-copy {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-discuss-button {
+  justify-self: start;
+}
+
+@keyframes contact-scan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes counter-fill {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 72%;
+  }
+}
+
 .contact-details {
   list-style: none;
   margin: 0;
@@ -1539,10 +1796,23 @@ h1 {
     padding-inline: 28px;
   }
 
+  .contact-shell {
+    padding-inline: 28px;
+  }
+
   .about-hero,
   .about-highlight-grid,
   .about-capability-grid,
   .about-principles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-layout,
+  .contact-cta-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-signal-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1626,6 +1896,10 @@ h1 {
     padding-inline: 28px;
   }
 
+  .contact-shell {
+    padding-inline: 28px;
+  }
+
   .about-story,
   .about-highlight-card,
   .about-capability-card,
@@ -1672,11 +1946,26 @@ h1 {
     padding: 24px;
   }
 
+  .contact-hero-card,
+  .contact-signal-card,
+  .contact-channel-card,
+  .contact-cta-bar {
+    padding: 24px;
+  }
+
   .service-lead h3 {
     max-width: none;
   }
 
   .project-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-hero-copy h3 {
+    max-width: none;
+  }
+
+  .contact-channel-card {
     grid-template-columns: 1fr;
   }
 

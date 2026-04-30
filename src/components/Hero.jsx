@@ -126,8 +126,13 @@ export default function Hero() {
       </div>
       <div className="search-card">
         <div className="search-display search-display-large">
-          <span className="search-text">{query}</span>
-          <span className={`cursor ${typing ? 'cursor-active' : 'cursor-paused'}`}>|</span>
+          <span className="search-text">
+            <span className={`search-text-value ${query ? '' : 'search-text-empty'}`}>{query || '\u00A0'}</span>
+            <span className={`cursor ${typing ? 'cursor-active' : 'cursor-paused'}`}>|</span>
+            <span className="search-text-tail" aria-hidden="true">
+              {activeScene.query.slice(query.length) || '\u00A0'}
+            </span>
+          </span>
         </div>
         <div className="suggestions-stack" aria-hidden="true">
           {visibleSuggestions.map((suggestion, index) => (

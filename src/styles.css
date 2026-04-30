@@ -388,6 +388,7 @@ h1 {
   display: flex;
   align-items: center;
   min-height: 62px;
+  overflow: hidden;
   box-shadow: 0 12px 34px rgba(4, 10, 24, 0.28);
   transition: box-shadow 220ms ease, border-color 220ms ease, transform 220ms ease;
 }
@@ -430,16 +431,32 @@ h1 {
 }
 
 .search-text {
-  flex: 0 1 auto;
+  flex: 1 1 auto;
+  width: 100%;
   min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.search-text-value {
+  display: inline;
 }
 
 .cursor {
   display: inline-block;
-  margin-left: 6px;
+  margin-left: 2px;
   color: var(--accent);
   font-weight: bold;
   opacity: 0.9;
+}
+
+.search-text-empty {
+  opacity: 0;
+}
+
+.search-text-tail {
+  visibility: hidden;
 }
 
 .cursor-active {
@@ -1768,24 +1785,38 @@ h1 {
   }
 
   .side-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    z-index: 30;
     flex-direction: row;
     justify-content: center;
-    padding: 18px 0;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 12px 14px calc(12px + env(safe-area-inset-bottom, 0px));
+    border-left: none;
+    border-bottom: none;
+    background: rgba(3, 8, 23, 0.92);
+    backdrop-filter: blur(16px);
+  }
+
+  .brand-mark {
+    display: none;
   }
 
   .nav-links {
     flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+    width: min(520px, 100%);
   }
 
   .nav-item::before {
-    left: auto;
-    right: 0;
+    display: none;
   }
 
   .content {
-    padding: 28px 20px 36px;
+    padding: 28px 20px 120px;
   }
 
   .about-shell {
@@ -1841,26 +1872,7 @@ h1 {
   }
 
   .process-track {
-    grid-template-columns: 1fr;
-    justify-items: start;
-    gap: 16px;
-    min-height: auto;
-    padding-left: 22px;
-  }
-
-  .process-track-line {
-    top: 8px;
-    bottom: 8px;
-    left: 22px;
-    right: auto;
-    width: 2px;
-    height: auto;
-    transform: none;
-    background: linear-gradient(180deg, rgba(63, 136, 226, 0.12), rgba(82, 172, 255, 0.85), rgba(63, 136, 226, 0.12));
-  }
-
-  .process-node {
-    margin-inline: 0;
+    display: none;
   }
 
   .process-grid {
@@ -1885,19 +1897,19 @@ h1 {
 @media (max-width: 680px) {
   .hero-card,
   .contact-card {
-    padding: 28px;
+    padding: 24px;
   }
 
   .about-shell {
-    padding-inline: 28px;
+    padding-inline: 16px;
   }
 
   .services-page-shell {
-    padding-inline: 28px;
+    padding-inline: 16px;
   }
 
   .contact-shell {
-    padding-inline: 28px;
+    padding-inline: 16px;
   }
 
   .about-story,
@@ -1905,7 +1917,7 @@ h1 {
   .about-capability-card,
   .about-principle-card,
   .about-stat {
-    padding: 24px;
+    padding: 20px;
   }
 
   .about-story h3 {
@@ -1915,15 +1927,76 @@ h1 {
   .process-section,
   .services-section,
   .technologies-section {
-    padding-inline: 28px;
+    padding-inline: 16px;
   }
 
   .process-shell {
-    padding: 28px 0 6px;
+    padding: 20px 0 6px;
   }
 
   h1 {
-    font-size: 2.8rem;
+    font-size: 2.35rem;
+    line-height: 0.98;
+  }
+
+  .hero-subtitle,
+  .section-intro,
+  .process-intro {
+    font-size: 0.96rem;
+    line-height: 1.65;
+  }
+
+  .search-card {
+    min-height: auto;
+    gap: 10px;
+  }
+
+  .suggestions-stack {
+    min-height: 174px;
+    gap: 10px;
+    grid-template-rows: repeat(3, minmax(54px, 1fr));
+  }
+
+  .search-display {
+    padding: 16px 18px;
+    min-height: 64px;
+    font-size: 0.88rem;
+    line-height: 1.2;
+    align-items: center;
+  }
+
+  .search-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cursor {
+    margin-top: 0;
+  }
+
+  .suggestion-item {
+    min-height: 54px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    white-space: normal;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    align-items: flex-start;
+  }
+
+  .hero-cta-row {
+    align-items: stretch;
+    min-height: 58px;
+  }
+
+  .hero-discuss-button,
+  .services-discuss-button,
+  .contact-discuss-button {
+    width: 100%;
   }
 
   .process-header h2 {
@@ -1931,7 +2004,39 @@ h1 {
   }
 
   .process-card {
-    padding: 22px;
+    padding: 20px;
+  }
+
+  .process-card-top {
+    align-items: center;
+  }
+
+  .process-card h3,
+  .service-card-v2 h3,
+  .project-card-copy h3,
+  .contact-cta-copy h3 {
+    font-size: 1.2rem;
+  }
+
+  .process-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }
+
+  .process-step-number {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+
+  .process-chip-row {
+    gap: 8px;
+  }
+
+  .process-chip {
+    padding: 7px 10px;
+    font-size: 0.78rem;
   }
 
   .technology-summary,
@@ -1940,21 +2045,38 @@ h1 {
     grid-template-columns: 1fr;
   }
 
+  .technology-summary-item,
+  .technology-card,
+  .technology-card-pro {
+    padding: 18px;
+  }
+
   .service-lead,
   .service-card-v2,
   .project-card {
-    padding: 24px;
+    padding: 20px;
   }
 
   .contact-hero-card,
   .contact-signal-card,
   .contact-channel-card,
   .contact-cta-bar {
-    padding: 24px;
+    padding: 20px;
   }
 
   .service-lead h3 {
     max-width: none;
+  }
+
+  .service-lead-point,
+  .services-support-card,
+  .services-cta-card {
+    min-height: auto;
+    padding: 20px;
+  }
+
+  .project-card {
+    min-height: 220px;
   }
 
   .project-showcase-grid {
@@ -1968,9 +2090,78 @@ h1 {
   .contact-channel-card {
     grid-template-columns: 1fr;
   }
+}
 
+@media (max-width: 540px) {
+  .content {
+    padding: 18px 12px 108px;
+    gap: 26px;
+  }
+
+  .side-nav {
+    padding: 10px 10px calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .nav-links {
+    gap: 6px;
+  }
+
+  .nav-item {
+    padding: 0;
+    flex: 1 1 0;
+  }
+
+  .icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    margin-inline: auto;
+    font-size: 1rem;
+  }
+
+  .hero-card,
+  .contact-card,
+  .about-story,
+  .about-highlight-card,
+  .about-capability-card,
+  .about-principle-card,
+  .about-stat,
+  .project-card,
+  .contact-hero-card,
+  .contact-signal-card,
+  .contact-channel-card,
+  .contact-cta-bar,
   .services-support-card,
-  .services-cta-card {
-    padding: 24px;
+  .services-cta-card,
+  .service-card-v2,
+  .service-lead {
+    border-radius: 22px;
+  }
+
+  .small-label,
+  .section-label,
+  .service-kicker,
+  .contact-activity-label,
+  .contact-channel-label {
+    letter-spacing: 0.14em;
+  }
+
+  h1 {
+    font-size: 2.05rem;
+  }
+
+  .process-header h2,
+  .services-section h2,
+  .about-header h2,
+  .contact-header h2 {
+    font-size: 1.9rem;
+  }
+
+  .hero-discuss-title {
+    font-size: 0.88rem;
+  }
+
+  .contact-signal-card {
+    min-height: 120px;
   }
 }

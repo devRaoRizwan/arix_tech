@@ -49,6 +49,73 @@ export const serviceCards = [
   },
 ];
 
+export const projectShowcase = [
+  {
+    id: 'nova-store',
+    name: 'Nova Store',
+    type: 'E-commerce',
+    logo: 'NS',
+    description: 'Clean storefront with product browsing, cart flow, and a simple admin side.',
+    tech: ['React', 'Node.js', 'MongoDB'],
+  },
+  {
+    id: 'pulse-clinic',
+    name: 'Pulse Clinic',
+    type: 'Booking',
+    logo: 'PC',
+    description: 'Appointment booking experience with reminders and a tidy dashboard for staff.',
+    tech: ['React', 'Express', 'SQL'],
+  },
+  {
+    id: 'orbit-ops',
+    name: 'Orbit Ops',
+    type: 'Automation',
+    logo: 'OO',
+    description: 'Internal workflow tool for tracking requests, status, and repeat tasks.',
+    tech: ['Python', 'APIs', 'Automation'],
+  },
+  {
+    id: 'trend-harvest',
+    name: 'Trend Harvest',
+    type: 'Data',
+    logo: 'TH',
+    description: 'Market data collection setup with competitor tracking and simple reporting.',
+    tech: ['Python', 'Scraping', 'PostgreSQL'],
+  },
+  {
+    id: 'atelier-site',
+    name: 'Atelier Site',
+    type: 'Brand Web',
+    logo: 'AS',
+    description: 'Modern brand site focused on presentation, trust, and fast mobile browsing.',
+    tech: ['Vite', 'React', 'CSS3'],
+  },
+  {
+    id: 'ledger-flow',
+    name: 'Ledger Flow',
+    type: 'Finance Tool',
+    logo: 'LF',
+    description: 'Compact dashboard for invoices, payments, and simple business reporting.',
+    tech: ['React', 'Node.js', 'SQL'],
+  },
+  {
+    id: 'menu-spark',
+    name: 'Menu Spark',
+    type: 'Restaurant',
+    logo: 'MS',
+    description: 'Digital menu and ordering flow built to feel quick, visual, and mobile-first.',
+    tech: ['React', 'Firebase', 'CSS3'],
+  },
+  {
+    id: 'hire-loop',
+    name: 'Hire Loop',
+    type: 'Hiring',
+    logo: 'HL',
+    description: 'Candidate tracking workspace with forms, status pipelines, and team notes.',
+    tech: ['Vite', 'Express', 'MongoDB'],
+  },
+];
+
 export const processSteps = [
   {
     id: 'discover',

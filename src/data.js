@@ -106,3 +106,46 @@ export const technologies = [
     stack: ['Git'],
   },
 ];
+
+export const aboutHighlights = [
+  {
+    label: 'How we work',
+    title: 'Clear thinking before flashy output',
+    body: 'We like work that feels sharp, useful, and thought through. Every project starts by understanding the real need before writing code.',
+  },
+  {
+    label: 'What matters',
+    title: 'Products people can actually use',
+    body: 'Good software should not just look modern. It should be easy to use, dependable day to day, and built around real business goals.',
+  },
+  {
+    label: 'What we bring',
+    title: 'Design, engineering, and practical problem solving',
+    body: 'From interfaces to backend systems to automation, we connect the moving parts so the final product feels complete and intentional.',
+  },
+];
+
+export const aboutPrinciples = [
+  {
+    title: 'Built for real use',
+    body: 'We focus on products that work well in everyday business use, not just polished demos.',
+  },
+  {
+    title: 'Simple where possible',
+    body: 'We avoid unnecessary complexity and choose solutions that stay clear and maintainable.',
+  },
+  {
+    title: 'Thoughtful execution',
+    body: 'We care about the details that make a product feel reliable, smooth, and professional.',
+  },
+  {
+    title: 'Long-term value',
+    body: 'We build with growth in mind so your product has room to improve over time.',
+  },
+];
+
+export const aboutStats = [
+  { value: 'Web', label: 'Sites and product experiences' },
+  { value: 'Data', label: 'Automation and scraping workflows' },
+  { value: 'Full-stack', label: 'Frontend to backend delivery' },
+];

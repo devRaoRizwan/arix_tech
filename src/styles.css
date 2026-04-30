@@ -1048,6 +1048,149 @@ h1 {
   justify-content: flex-start;
 }
 
+.about-panel {
+  justify-content: center;
+}
+
+.about-shell {
+  width: min(1440px, 100%);
+  display: grid;
+  gap: 28px;
+  padding-inline: 44px;
+}
+
+.about-header {
+  max-width: 860px;
+}
+
+.about-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
+  gap: 24px;
+}
+
+.about-story {
+  padding: 36px;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at top right, rgba(58, 160, 255, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(13, 23, 48, 0.96), rgba(7, 13, 26, 0.94));
+  border: 1px solid rgba(81, 134, 209, 0.14);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.18), inset 0 0 0 1px rgba(196, 222, 255, 0.03);
+  display: grid;
+  gap: 18px;
+}
+
+.about-kicker,
+.about-card-label,
+.about-capability-label {
+  color: #8cc7ff;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.about-story h3,
+.about-highlight-card h3,
+.about-capability-card h3,
+.about-principle-card h3 {
+  margin: 0;
+  color: #eef5ff;
+}
+
+.about-story h3 {
+  font-size: clamp(2rem, 3.3vw, 3rem);
+  line-height: 1.02;
+  max-width: 14ch;
+}
+
+.about-story p,
+.about-highlight-card p,
+.about-capability-card p,
+.about-principle-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.about-stats {
+  display: grid;
+  gap: 18px;
+}
+
+.about-stat {
+  min-height: 150px;
+  padding: 26px 24px;
+  border-radius: 26px;
+  background: rgba(8, 15, 30, 0.94);
+  border: 1px solid rgba(75, 119, 201, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(196, 222, 255, 0.04);
+  display: grid;
+  align-content: end;
+  gap: 8px;
+}
+
+.about-stat strong {
+  color: #f3f8ff;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.about-stat span {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.about-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.about-highlight-card,
+.about-capability-card,
+.about-principle-card {
+  padding: 28px;
+  border-radius: 24px;
+  background: rgba(8, 15, 30, 0.94);
+  border: 1px solid rgba(75, 119, 201, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(196, 222, 255, 0.04);
+  display: grid;
+  gap: 14px;
+}
+
+.about-capabilities,
+.about-principles-section {
+  display: grid;
+  gap: 22px;
+}
+
+.about-capability-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.about-capability-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.about-capability-metric {
+  color: rgba(217, 233, 255, 0.28);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.about-principles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
 .grid-panel {
   margin-top: 28px;
   display: grid;
@@ -1167,6 +1310,17 @@ h1 {
     padding: 28px 20px 36px;
   }
 
+  .about-shell {
+    padding-inline: 28px;
+  }
+
+  .about-hero,
+  .about-highlight-grid,
+  .about-capability-grid,
+  .about-principles-grid {
+    grid-template-columns: 1fr;
+  }
+
   .process-shell {
     padding: 28px 0 6px;
   }
@@ -1217,6 +1371,22 @@ h1 {
   .hero-card,
   .contact-card {
     padding: 28px;
+  }
+
+  .about-shell {
+    padding-inline: 28px;
+  }
+
+  .about-story,
+  .about-highlight-card,
+  .about-capability-card,
+  .about-principle-card,
+  .about-stat {
+    padding: 24px;
+  }
+
+  .about-story h3 {
+    max-width: none;
   }
 
   .process-section,

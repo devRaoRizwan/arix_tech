@@ -119,7 +119,7 @@ export default function Hero() {
         <div className="hero-topbar">
           <span className="small-label">Arix Tech</span>
         </div>
-        <h1>Software solutions for modern product teams</h1>
+        <h1>Software solutions for YOU</h1>
         <p className="hero-subtitle">
           We turn business ideas into polished online experiences, smart automation, and useful data tools that help brands grow.
         </p>
